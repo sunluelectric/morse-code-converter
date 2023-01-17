@@ -6,10 +6,12 @@ Convert text into morse code and send it out via LED blink or the flash of 1602 
 The text can be either pre-programmed into the code, or read from a simple keyboard.
 */
 
+// constant
+
 // configuration
-const int unit_time = 100;        // unit time = 100ms
-const int blank_letter = 3;       // blank between letters = 3 unit
-const int blank_word = 7;         // blank between words = 7 unit 
+const int baudPalsePeriod = 200;        // unit time = 100ms
+const int blankLetter = 3;              // blank between letters = 3 unit
+const int blankWord = 7;                // blank between words = 7 unit 
 
 // morse code table
 const int tabMorse[][8] = {
@@ -222,27 +224,53 @@ int checkTabMorse(char s){
   }
   return i;
 }
-
+void lightPalse(int duration){
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(baudPalsePeriod*duration);
+}
+void vanishPalse(int duration){
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(baudPalsePeriod*duration);
+}
 
 void setup() {
   // put your setup code here, to run once:
-
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   int msgLength;
-  int count;
+  int count, count8;
+  int isNewWord;
   int *indexMorseTable;
   /*read message*/
   // msg = 
-
+  isNewWord = 0;
   /*process message*/
   msgLength = sizeof(msg);
-  for (count = 0; count < msgLength; count++){
+  for (count = 0; count < msgLength; count++) {
+    /*end of message*/
+    if (msg[count] == '\0') break;
+    /*space*/
+    if (msg[count] == ' ') {
+      vanishPalse(blankWord);
+      isNewWord = true;
+      continue;
+    }
+    /*letter*/
+    if (isNewWord) isNewWord = 0;
+    else vanishPalse(blankLetter);
     indexMorseTable = tabMorse[checkTabMorse(msg[count])];
+    for (count8 = 0; count8 < 8; count8++) {
+      if (*(indexMorseTable + count8) == 0) break;
+      else {
+        if (count8 == 0) lightPalse(*(indexMorseTable + count8));
+        else {
+          vanishPalse(1);
+          lightPalse(*(indexMorseTable + count8));          
+        }
+      }
+    }    
   }
-
-
 }
-

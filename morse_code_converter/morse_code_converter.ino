@@ -60,7 +60,7 @@ const int tabMorse[][8] = {
 };
 
 // message
-char msg[] = "Hello World!";
+char msg[] = "Xing Zhe is a little cute dog!";
 
 // user-defined functions
 int checkTabMorse(char s){

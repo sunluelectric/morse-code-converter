@@ -15,7 +15,7 @@ The counterparty of agile is the more conventional waterfall model.
 
 Waterfall model refers to the system development procedure where the developers develop and deliver the entire software as a whole, regardless of how many sub packages or functions that the software may contain. After the customers raise the requests to the developers, they do not communicate very often until the entire software is developed. The entire development follows a straight line from one end to the other, or a waterfall from top to the tail, hence the name, waterfall.
 
-![Waterfall](./readmefigs/waterfall.png)
+![Waterfall](./readme-figs/waterfall.png)
 
 As requests from the customers start to vary frequently (sometimes the requests can change everyday), the disadvantages of using waterfall model are revealed. 
 
@@ -27,7 +27,7 @@ Agile is proposed to address these issues. A very important feature of agile, co
 
 In agile architecture, each feature is separately modularized. Each feature, before deploying and integrating into production environment, circulates in its own “development and testing circle”, where it can be tested and reviewed iteratively by the developers and the customers, as shown below.
 
-![Agile](./readmefigs/agile.png)
+![Agile](./readme-figs/agile.png)
 
 Should there be any adjustment to the feature, just brings back the circle and improve the feature here, before releasing it to the production environment again.
 
@@ -60,7 +60,7 @@ For each sprint, sprint planning and sprint backlog are proposed that describes 
 
 Pipeline is a set of data processing elements connected in series, where the output of the upper stream processing is the input of the down stream processing. An example is shown below.
 
-![Pipeline](./readmefigs/pipeline.png)
+![Pipeline](./readme-figs/pipeline.png)
 
 By using a pipeline and let multiple pipelines at different execution phase run in parallel, the efficiency of the system is increased.
 
@@ -116,7 +116,7 @@ The above procedures form the release pipeline, and it makes it technically poss
 
 A complete CI/CD flow is given below. Since the operation team joins the developers team, they are now called the DevOps team.
 
-![Devops](./readmefigs/devops.png)
+![Devops](./readme-figs/devops.png)
 
 In this cycle, clearly, the testing and sign off for release is the last stop before the code is released to the production environment. Only senior developers shall have the right to merge and commit the master branch, and sign off the code for release.
 
